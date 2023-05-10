@@ -64,7 +64,7 @@ module.exports = {
         "no-unsafe-negation": "error", // запрет отрицания левого операнда в операторах отношения
         "no-unsafe-optional-chaining": "error", // запрет использования foo?.bar в некоторых ситуациях
         "no-unused-labels": "error", // запрет неиспользуемых меток
-        "no-unused-vars": "error", // запрет неиспользуемых переменных
+        "no-unused-vars": ["error", { "vars": "local" }], // запрет неиспользуемых переменных
         "no-useless-backreference": "error", // запрет бесполезных обратных ссылок в регулярках
         "no-useless-catch": "error", // запрет ненужных catch
         "no-useless-escape": "error", // запрет ненужных escape-символов
