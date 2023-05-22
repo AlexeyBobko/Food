@@ -234,20 +234,19 @@ window.addEventListener('DOMContentLoaded', () => {
             margin: 0 auto`;
             form.insertAdjacentElement('afterend', statusMessage);
 
-            const request = new XMLHttpRequest();
-            request.open('POST', 'server.php');
             const formData = new FormData(form);
-            request.send(formData);
-
-            request.addEventListener('load', () => {
-                if(request.status === 200) {
-                    console.log(request.response);
-                    showThanksModal(message.success);
-                    form.reset();
+            fetch('server.php', {
+                method: 'POST',
+                body: formData
+            }).then(data => data.text())
+            .then(data => {
+                console.log(data);
+                showThanksModal(message.success);
                     statusMessage.remove();
-                } else {
-                    showThanksModal(message.failure);
-                }
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
             })
         })
     }
@@ -276,4 +275,8 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModalFunction();
         }, 3000)
     }
+
+    fetch('http://localhost:3000/menu')
+    .then(data => data.json())
+    .then(res => console.log(res))
 });
