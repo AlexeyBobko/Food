@@ -1,3 +1,5 @@
+import { getResources } from "../services/services";
+
 function cards() {
  //Menu cards using classes
 
@@ -32,29 +34,21 @@ function cards() {
                 </div>
         `;
         this.parent.append(element);
+        }
     }
-}
-
-// const getResources = async (url) => {
-//     let res = await fetch(url);
-// if(!res.ok) {
-//     throw new Error(`URL: ${url}, status ${res.status}`);
-// }
-//     return await res.json();
-// };
-// getResources('http://localhost:3000/menu')
-// .then(data => {
-//     data.forEach(({img, altimg, title, descr, price}) => {
-//         new MenuCard(img, altimg, title, descr, price, '.menu .container', 'menu__item').render();
-//     })
-// })
-
-axios.get('http://localhost:3000/menu')
-.then(data => {
-        data.data.forEach(({img, altimg, title, descr, price}) => {
+    getResources('http://localhost:3000/menu')
+    .then(data => {
+        data.forEach(({img, altimg, title, descr, price}) => {
             new MenuCard(img, altimg, title, descr, price, '.menu .container', 'menu__item').render();
         })
-    });
+    })
+
+    // axios.get('http://localhost:3000/menu')
+    // .then(data => {
+    //         data.data.forEach(({img, altimg, title, descr, price}) => {
+    //             new MenuCard(img, altimg, title, descr, price, '.menu .container', 'menu__item').render();
+    //         })
+    //     });
 }
 
-module.exports = cards;
+export default cards;

@@ -1,8 +1,5 @@
 // Timer
-function timer() {
-
-
-const deadline = '2023-08-09';
+function timer(deadline) {
 
 function getTimeRemaining(endtime) {
     let days, hours, minutes, seconds;
@@ -59,7 +56,7 @@ function setClock(endtime) {
     }
 }
 
-setClock(deadline);
+    setClock(deadline);
 }
 
-module.exports = timer;
+export default timer;
